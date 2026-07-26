@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="Kohiv/Kohiv.csproj" />
+  <Project Path="src/Kohiv.Application/Kohiv.Application.csproj" Id="302c9b0e-a6be-4186-bbed-af428169de9d" />
+  <Project Path="src/Kohiv.Domain/Kohiv.Domain.csproj" Id="49538226-29b4-4800-b475-f6228ac43370" />
+  <Project Path="src/Kohiv.Infrastructure/Kohiv.Infrastructure.csproj" Id="4f7007bf-3fe2-43f4-bdd4-9a686f05d543" />
+  <Project Path="src/Kohiv.Web/Kohiv.Web.csproj" Id="b52700c3-bd1e-4963-9b38-c0459fb0c6a8" />
 </Solution>
