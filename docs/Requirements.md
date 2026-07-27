@@ -81,8 +81,7 @@ The system shall allow users to filter Experiences by:
 
 The system shall support the following statuses:
 
-* Saved
-* Planned
+* Wishlist
 * Completed
 
 An Experience shall have only one status at any time.

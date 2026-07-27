@@ -120,19 +120,15 @@ Examples:
 * Restaurants
 * Camping locations
 
-An Experience has a lifecycle:
+An Experience has a simplified MVP lifecycle:
 
 ```
-Saved → Planned → Completed
+Wishlist → Completed
 ```
 
-## Saved
+## Wishlist
 
-The user discovered something interesting and wants to keep it.
-
-## Planned
-
-The user intends to complete the experience.
+The user discovered something interesting and wants to experience it in the future.
 
 ## Completed
 

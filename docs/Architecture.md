@@ -38,7 +38,7 @@ Each layer has a specific responsibility.
 ---
 
 # 3. Solution Structure
-Kohiv.sln
+Kohiv.slnx
 
 src
 
