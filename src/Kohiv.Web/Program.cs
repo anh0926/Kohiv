@@ -1,4 +1,7 @@
+using Kohiv.Application.Common.Interfaces;
+using Kohiv.Application.Experiences;
 using Kohiv.Infrastructure.Persistence;
+using Kohiv.Infrastructure.Persistence.Respositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +12,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IExperienceRepository, ExperienceRepository>();
+builder.Services.AddScoped<ExperienceService>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 
