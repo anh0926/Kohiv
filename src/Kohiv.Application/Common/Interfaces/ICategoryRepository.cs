@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Kohiv.Domain.Entities;
 
 namespace Kohiv.Application.Common.Interfaces
 {
-    internal interface ICategoryRepository
+    public interface ICategoryRepository
     {
+        Task<IReadOnlyList<Category>> GetAllAsync();
     }
 }
