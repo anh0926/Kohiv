@@ -20,20 +20,14 @@ namespace Kohiv.Web.Controllers
         {
             var experiences = await _experienceService.GetAllAsync();
 
-            var viewModel = new List<ExperienceListItemViewModel>();
-
-            foreach (var experience in experiences)
+            var viewModel = experiences.Select(e => new ExperienceListItemViewModel
             {
-                var item = new ExperienceListItemViewModel
-                {
-                    Id = experience.Id,
-                    Title = experience.Title,
-                    CategoryName = experience.Category?.Name ?? string.Empty,
-                    Status = experience.Status.ToString(),
-                    CreatedAt = experience.CreatedAt
-                };
-                viewModel.Add(item);
-            }
+                Id = e.Id,
+                Title = e.Title,
+                CategoryName = e.Category?.Name ?? string.Empty,
+                Status = e.Status.ToString(),
+                CreatedAt = e.CreatedAt
+            }).ToList();
 
             return View(viewModel);
         }
@@ -113,10 +107,6 @@ namespace Kohiv.Web.Controllers
             }
 
             return categoryItems;
-        }
-
-
-       
-        }
+        }        
     }
 }

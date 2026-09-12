@@ -1,0 +1,44 @@
+﻿@model ExperienceListViewModel
+
+@{
+    ViewData["Title"] = "Experiences";
+}
+
+<h1>Experiences</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create Experience</a>
+</p>
+
+@if (!Model.Experiences.Any())
+{
+    <p>No experiences have been created yet.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var experience in Model.Experiences)
+            {
+                <tr>
+                    <td>@experience.Title</td>
+                    <td>@experience.CategoryName</td>
+                    <td>@experience.Status</td>
+                    <td>@experience.CreatedAt.ToShortDateString()</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@experience.Id">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
