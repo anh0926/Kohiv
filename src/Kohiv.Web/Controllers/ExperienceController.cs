@@ -20,16 +20,20 @@ namespace Kohiv.Web.Controllers
         {
             var experiences = await _experienceService.GetAllAsync();
 
-            var viewModel = experiences
-                .Select(x => new ExperienceListItemViewModel
+            var viewModel = new List<ExperienceListItemViewModel>();
+
+            foreach (var experience in experiences)
+            {
+                var item = new ExperienceListItemViewModel
                 {
-                    Id = x.Id,
-                    Title = x.Title,
-                    CategoryName = x.Category?.Name ?? string.Empty,
-                    Status = x.Status.ToString(),
-                    CreatedAt = x.CreatedAt
-                })
-                .ToList();
+                    Id = experience.Id,
+                    Title = experience.Title,
+                    CategoryName = experience.Category?.Name ?? string.Empty,
+                    Status = experience.Status.ToString(),
+                    CreatedAt = experience.CreatedAt
+                };
+                viewModel.Add(item);
+            }
 
             return View(viewModel);
         }
@@ -96,13 +100,23 @@ namespace Kohiv.Web.Controllers
         {
             var categories = await _experienceService.GetCategoriesAsync();
 
-            return categories
-                .Select(x => new SelectListItem
+            var categoryItems = new List<SelectListItem>();
+
+            foreach (var category in categories) 
+            { 
+                var item = new SelectListItem
                 {
-                    Value = x.Id.ToString(),
-                    Text = x.Name
-                })
-                .ToList();
+                    Value = category.Id.ToString(),
+                    Text = category.Name
+                };
+                categoryItems.Add(item);
+            }
+
+            return categoryItems;
+        }
+
+
+       
         }
     }
 }

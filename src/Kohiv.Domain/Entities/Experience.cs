@@ -15,12 +15,19 @@ namespace Kohiv.Domain.Entities
             int categoryId,
             string title,
             ExperienceStatus status,
-            DateTime createdAt)
+            DateTime createdAt,
+            string? description = null,
+            string? location = null,
+            string? sourceUrl = null)
         {
             SetOwner(userId);
             SetCategory(categoryId);
             SetTitle(title);
             ChangeStatus(status);
+
+            Description = NormalizeOptionalText(description);
+            Location = NormalizeOptionalText(location);
+            SourceUrl = NormalizeOptionalText(sourceUrl);
 
             CreatedAt = createdAt;
             UpdatedAt = createdAt;

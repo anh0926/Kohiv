@@ -41,23 +41,17 @@ namespace Kohiv.Application.Experiences
             string? location,
             string? sourceUrl)
         {
-            var now = DateTime.UtcNow;
+            var createdAt = DateTime.UtcNow;
 
             var experience = new Experience(
                 userId,
                 categoryId,
                 title,
                 status,
-                now);
-
-            experience.UpdateDetails(
-                categoryId,
-                title,
-                status,
+                createdAt,
                 description,
                 location,
-                sourceUrl,
-                now);
+                sourceUrl);
 
             await _experienceRepository.AddAsync(experience);
             await _experienceRepository.SaveChangesAsync();
