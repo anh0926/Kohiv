@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Kohiv.Infrastructure\Kohiv.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
-
 </Project>

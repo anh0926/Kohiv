@@ -2,7 +2,7 @@ using Kohiv.Application.Common.Interfaces;
 using Kohiv.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Kohiv.Infrastructure.Persistence.Respositories
+namespace Kohiv.Infrastructure.Persistence.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {

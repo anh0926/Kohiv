@@ -1,0 +1,45 @@
+﻿@model ExperienceDetailsViewModel
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<h1>@Model.Title</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">Category</dt>
+    <dd class="col-sm-9">@Model.CategoryName</dd>
+
+    <dt class="col-sm-3">Status</dt>
+    <dd class="col-sm-9">@Model.Status</dd>
+
+    @if (!string.IsNullOrWhiteSpace(Model.Location))
+    {
+        <dt class="col-sm-3">Location</dt>
+        <dd class="col-sm-9">@Model.Location</dd>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Model.SourceUrl))
+    {
+        <dt class="col-sm-3">Source URL</dt>
+        <dd class="col-sm-9">
+            <a href="@Model.SourceUrl" target="_blank" rel="noopener noreferrer">
+                @Model.SourceUrl
+            </a>
+        </dd>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Model.Description))
+    {
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">@Model.Description</dd>
+    }
+
+    <dt class="col-sm-3">Created</dt>
+    <dd class="col-sm-9">@Model.CreatedAt.ToShortDateString()</dd>
+
+    <dt class="col-sm-3">Updated</dt>
+    <dd class="col-sm-9">@Model.UpdatedAt.ToShortDateString()</dd>
+</dl>
+
+<a asp-action="Index" class="btn btn-secondary">Back to Experiences</a>

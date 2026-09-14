@@ -1,7 +1,7 @@
 using Kohiv.Application.Common.Interfaces;
 using Kohiv.Application.Experiences;
 using Kohiv.Infrastructure.Persistence;
-using Kohiv.Infrastructure.Persistence.Respositories;
+using Kohiv.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,7 +35,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=Experience}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 
