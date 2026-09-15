@@ -4,41 +4,52 @@
     ViewData["Title"] = "Experiences";
 }
 
-<h1>Experiences</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="mb-1">Experiences</h1>
+        <p class="text-muted mb-0">Save places and activities you want to remember.</p>
+    </div>
 
-<p>
     <a asp-action="Create" class="btn btn-primary">Create Experience</a>
-</p>
+</div>
 
 @if (!Model.Experiences.Any())
 {
-    <p>No experiences have been created yet.</p>
+    <div class="border rounded p-5 text-center bg-light">
+        <h2 class="h4">No experiences yet</h2>
+        <p class="text-muted">Create your first saved experience to start building your library.</p>
+        <a asp-action="Create" class="btn btn-primary">Create Experience</a>
+    </div>
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Status</th>
-                <th>Created</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var experience in Model.Experiences)
-            {
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
                 <tr>
-                    <td>@experience.Title</td>
-                    <td>@experience.CategoryName</td>
-                    <td>@experience.Status</td>
-                    <td>@experience.CreatedAt.ToShortDateString()</td>
-                    <td>
-                        <a asp-action="Details" asp-route-id="@experience.Id">Details</a>
-                    </td>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var experience in Model.Experiences)
+                {
+                    <tr>
+                        <td class="fw-semibold">@experience.Title</td>
+                        <td>@experience.CategoryName</td>
+                        <td>
+                            <span class="badge text-bg-secondary">@experience.Status</span>
+                        </td>
+                        <td>@experience.CreatedAt.ToShortDateString()</td>
+                        <td class="text-end">
+                            <a asp-action="Details" asp-route-id="@experience.Id" class="btn btn-sm btn-outline-primary">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }

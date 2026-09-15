@@ -4,42 +4,45 @@
     ViewData["Title"] = Model.Title;
 }
 
-<h1>@Model.Title</h1>
+<div class="mb-4">
+    <a asp-action="Index" class="text-decoration-none">&larr; Back to Experiences</a>
+</div>
 
-<dl class="row">
-    <dt class="col-sm-3">Category</dt>
-    <dd class="col-sm-9">@Model.CategoryName</dd>
-
-    <dt class="col-sm-3">Status</dt>
-    <dd class="col-sm-9">@Model.Status</dd>
-
-    @if (!string.IsNullOrWhiteSpace(Model.Location))
-    {
-        <dt class="col-sm-3">Location</dt>
-        <dd class="col-sm-9">@Model.Location</dd>
-    }
-
-    @if (!string.IsNullOrWhiteSpace(Model.SourceUrl))
-    {
-        <dt class="col-sm-3">Source URL</dt>
-        <dd class="col-sm-9">
-            <a href="@Model.SourceUrl" target="_blank" rel="noopener noreferrer">
-                @Model.SourceUrl
-            </a>
-        </dd>
-    }
+<div class="border rounded p-4 bg-light">
+    <div class="mb-3">
+        <h1 class="mb-2">@Model.Title</h1>
+        <div class="d-flex gap-2">
+            <span class="badge text-bg-primary">@Model.CategoryName</span>
+            <span class="badge text-bg-secondary">@Model.Status</span>
+        </div>
+    </div>
 
     @if (!string.IsNullOrWhiteSpace(Model.Description))
     {
-        <dt class="col-sm-3">Description</dt>
-        <dd class="col-sm-9">@Model.Description</dd>
+        <p class="lead">@Model.Description</p>
     }
 
-    <dt class="col-sm-3">Created</dt>
-    <dd class="col-sm-9">@Model.CreatedAt.ToShortDateString()</dd>
+    <dl class="row mb-0">
+        @if (!string.IsNullOrWhiteSpace(Model.Location))
+        {
+            <dt class="col-sm-3">Location</dt>
+            <dd class="col-sm-9">@Model.Location</dd>
+        }
 
-    <dt class="col-sm-3">Updated</dt>
-    <dd class="col-sm-9">@Model.UpdatedAt.ToShortDateString()</dd>
-</dl>
+        @if (!string.IsNullOrWhiteSpace(Model.SourceUrl))
+        {
+            <dt class="col-sm-3">Source URL</dt>
+            <dd class="col-sm-9">
+                <a href="@Model.SourceUrl" target="_blank" rel="noopener noreferrer">
+                    @Model.SourceUrl
+                </a>
+            </dd>
+        }
 
-<a asp-action="Index" class="btn btn-secondary">Back to Experiences</a>
+        <dt class="col-sm-3">Created</dt>
+        <dd class="col-sm-9">@Model.CreatedAt.ToShortDateString()</dd>
+
+        <dt class="col-sm-3">Updated</dt>
+        <dd class="col-sm-9">@Model.UpdatedAt.ToShortDateString()</dd>
+    </dl>
+</div>
