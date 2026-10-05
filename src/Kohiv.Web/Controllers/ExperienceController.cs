@@ -95,6 +95,98 @@ namespace Kohiv.Web.Controllers
             return RedirectToAction(nameof(Details), new { id = experienceId });
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var experience = await _experienceService.GetByIdAsync(id);
+
+            if (experience is null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new EditExperienceViewModel
+            {
+                Id = experience.Id,
+                Title = experience.Title,
+                CategoryId = experience.CategoryId,
+                Status = experience.Status,
+                Description = experience.Description,
+                Location = experience.Location,
+                SourceUrl = experience.SourceUrl,
+                Categories = await GetCategorySelectListAsync()
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, EditExperienceViewModel viewModel)
+        {
+            if (id != viewModel.Id)
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                viewModel.Categories = await GetCategorySelectListAsync();
+                return View(viewModel);
+            }
+
+            var updated = await _experienceService.UpdateAsync(
+                viewModel.Id,
+                viewModel.CategoryId,
+                viewModel.Title,
+                viewModel.Status,
+                viewModel.Description,
+                viewModel.Location,
+                viewModel.SourceUrl);
+
+            if (!updated)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(Details), new { id = viewModel.Id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var experience = await _experienceService.GetByIdAsync(id);
+
+            if (experience is null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new DeleteExperienceViewModel
+            {
+                Id = experience.Id,
+                Title = experience.Title,
+                CategoryName = experience.Category?.Name ?? string.Empty,
+                Status = experience.Status.ToString()
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var deleted = await _experienceService.DeleteAsync(id);
+
+            if (!deleted)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         private async Task<IReadOnlyList<SelectListItem>> GetCategorySelectListAsync()
         {
             var categories = await _experienceService.GetCategoriesAsync();

@@ -46,6 +46,7 @@ else
                         <td>@experience.CreatedAt.ToShortDateString()</td>
                         <td class="text-end">
                             <a asp-action="Details" asp-route-id="@experience.Id" class="btn btn-sm btn-outline-primary">Details</a>
+                            <a asp-action="Edit" asp-route-id="@experience.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
                         </td>
                     </tr>
                 }

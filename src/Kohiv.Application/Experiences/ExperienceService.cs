@@ -58,5 +58,50 @@ namespace Kohiv.Application.Experiences
 
             return experience.Id;
         }
+
+        public async Task<bool> UpdateAsync(
+            int id,
+            int categoryId,
+            string title,
+            ExperienceStatus status,
+            string? description,
+            string? location,
+            string? sourceUrl)
+        {
+            var experience = await _experienceRepository.GetByIdAsync(id);
+
+            if (experience is null)
+            {
+                return false;
+            }
+
+            experience.UpdateDetails(
+                categoryId,
+                title,
+                status,
+                description,
+                location,
+                sourceUrl,
+                DateTime.UtcNow);
+
+            await _experienceRepository.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var experience = await _experienceRepository.GetByIdAsync(id);
+
+            if (experience is null)
+            {
+                return false;
+            }
+
+            _experienceRepository.Remove(experience);
+            await _experienceRepository.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

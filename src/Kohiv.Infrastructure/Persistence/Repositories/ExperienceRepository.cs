@@ -17,6 +17,11 @@ namespace Kohiv.Infrastructure.Persistence.Repositories
             await _dbcontext.Experiences.AddAsync(experience);
         }
 
+        public void Remove(Experience experience)
+        {
+            _dbcontext.Experiences.Remove(experience);
+        }
+
         public async Task<Experience?> GetByIdAsync(int id)
         {
             return await _dbcontext.Experiences

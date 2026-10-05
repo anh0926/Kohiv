@@ -10,6 +10,8 @@ namespace Kohiv.Application.Common.Interfaces
 
         Task AddAsync(Experience experience);
 
+        void Remove(Experience experience);
+
         Task SaveChangesAsync();
     }
 }
