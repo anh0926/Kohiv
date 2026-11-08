@@ -2,7 +2,7 @@
 
 **Version:** 1.1
 **Status:** Approved
-**Owner:** Product Owner
+**Owner:** Anh
 **Last Updated:** July 2026
 
 ---
