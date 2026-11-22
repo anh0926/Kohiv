@@ -56,7 +56,7 @@ Upcoming Experience work includes:
 
 Experiences are Kohiv's first module, not its final limit.
 
-Over time, Kohiv may grow into a broader personal platform for helping people save, organise, plan, and revisit meaningful parts of their lives. New features will be added only when they solve a real user problem.
+The longer-term vision for Kohiv is a personal life management platform: a place where people can save, organise, plan, and revisit meaningful parts of their lives. Future modules may expand beyond Experiences when they solve a genuine user problem.
 
 Kohiv may also use AI to reduce manual data entry. For example, a user may provide a supported source link and receive suggested Experience details to review before saving. Users remain in control of the final information stored in Kohiv.
 
