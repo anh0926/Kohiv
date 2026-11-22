@@ -1,5 +1,6 @@
 using Kohiv.Application.Common.Interfaces;
 using Kohiv.Application.Experiences;
+using Kohiv.Infrastructure.Identity;
 using Kohiv.Infrastructure.Persistence;
 using Kohiv.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+})
+.AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddScoped<IExperienceRepository, ExperienceRepository>();
 builder.Services.AddScoped<ExperienceService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
